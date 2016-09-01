@@ -1,4 +1,4 @@
-﻿namespace SetBuilder.Editor
+﻿namespace SetBuilder.Builder
 {
     partial class Form1
     {

@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace SetBuilder.Editor
+namespace SetBuilder.Builder
 {
     public partial class Form1 : Form
     {
