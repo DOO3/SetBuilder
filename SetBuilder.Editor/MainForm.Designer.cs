@@ -98,6 +98,7 @@ namespace SetBuilder.Editor
             this.bClosePanel.TabIndex = 1;
             this.bClosePanel.Text = "X";
             this.bClosePanel.UseVisualStyleBackColor = false;
+            this.bClosePanel.Click += new System.EventHandler(this.bClosePanel_Click);
             // 
             // dgvItems
             // 

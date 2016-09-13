@@ -65,7 +65,7 @@ namespace SetBuilder.Editor
                 else if (Right.Contains(cursor)) message.Result = (IntPtr)HTRIGHT;
                 else if (Bottom.Contains(cursor)) message.Result = (IntPtr)HTBOTTOM;
             }
-        }
+        }       
 
         #endregion
 
@@ -92,15 +92,24 @@ namespace SetBuilder.Editor
 
         private void bAdd_Click(object sender, EventArgs e)
         {
-          
+            var form = new AddEditForm();
+            form.ShowDialog();
         }
 
+        private void bClosePanel_Click(object sender, EventArgs e)
+        {
+            FormClose();
+        }      
+
         private void bClose_Click(object sender, EventArgs e)
+        {
+            FormClose();
+        }
+
+        private void FormClose()
         {
             //TODO: Close message box
             Close();
         }
-
-
     }
 }
