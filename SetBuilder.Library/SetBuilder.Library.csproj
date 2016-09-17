@@ -43,6 +43,7 @@
     <Compile Include="Enums\Category.cs" />
     <Compile Include="Enums\Class.cs" />
     <Compile Include="Enums\Race.cs" />
+    <Compile Include="Enums\Stat.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

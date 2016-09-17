@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SetBuilder.Library;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Runtime.InteropServices;
@@ -8,6 +9,8 @@ namespace SetBuilder.Editor
 {
     public partial class MainForm : Form
     {
+        private List<Item> Items { get; set; }
+
         public MainForm()
         {
             InitializeComponent();
