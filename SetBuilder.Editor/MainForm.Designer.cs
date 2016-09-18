@@ -30,6 +30,7 @@ namespace SetBuilder.Editor
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.msMain = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bOpen = new System.Windows.Forms.ToolStripMenuItem();
@@ -38,8 +39,14 @@ namespace SetBuilder.Editor
             this.bClosePanel = new System.Windows.Forms.Button();
             this.dgvItems = new System.Windows.Forms.DataGridView();
             this.bAdd = new System.Windows.Forms.Button();
+            this.itemBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.categoryDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.statsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.imagePathDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.msMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvItems)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // msMain
@@ -102,7 +109,14 @@ namespace SetBuilder.Editor
             // 
             // dgvItems
             // 
+            this.dgvItems.AutoGenerateColumns = false;
             this.dgvItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvItems.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.nameDataGridViewTextBoxColumn,
+            this.categoryDataGridViewTextBoxColumn,
+            this.statsDataGridViewTextBoxColumn,
+            this.imagePathDataGridViewTextBoxColumn});
+            this.dgvItems.DataSource = this.itemBindingSource;
             this.dgvItems.Location = new System.Drawing.Point(12, 63);
             this.dgvItems.Name = "dgvItems";
             this.dgvItems.Size = new System.Drawing.Size(749, 257);
@@ -120,6 +134,34 @@ namespace SetBuilder.Editor
             this.bAdd.Text = "Add";
             this.bAdd.UseVisualStyleBackColor = false;
             this.bAdd.Click += new System.EventHandler(this.bAdd_Click);
+            // 
+            // itemBindingSource
+            // 
+            this.itemBindingSource.DataSource = typeof(SetBuilder.Library.Item);
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            // 
+            // categoryDataGridViewTextBoxColumn
+            // 
+            this.categoryDataGridViewTextBoxColumn.DataPropertyName = "Category";
+            this.categoryDataGridViewTextBoxColumn.HeaderText = "Category";
+            this.categoryDataGridViewTextBoxColumn.Name = "categoryDataGridViewTextBoxColumn";
+            // 
+            // statsDataGridViewTextBoxColumn
+            // 
+            this.statsDataGridViewTextBoxColumn.DataPropertyName = "Stats";
+            this.statsDataGridViewTextBoxColumn.HeaderText = "Stats";
+            this.statsDataGridViewTextBoxColumn.Name = "statsDataGridViewTextBoxColumn";
+            // 
+            // imagePathDataGridViewTextBoxColumn
+            // 
+            this.imagePathDataGridViewTextBoxColumn.DataPropertyName = "ImagePath";
+            this.imagePathDataGridViewTextBoxColumn.HeaderText = "ImagePath";
+            this.imagePathDataGridViewTextBoxColumn.Name = "imagePathDataGridViewTextBoxColumn";
             // 
             // MainForm
             // 
@@ -139,6 +181,7 @@ namespace SetBuilder.Editor
             this.msMain.ResumeLayout(false);
             this.msMain.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvItems)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -154,6 +197,11 @@ namespace SetBuilder.Editor
         private System.Windows.Forms.ToolStripMenuItem bOpen;
         private System.Windows.Forms.DataGridView dgvItems;
         private System.Windows.Forms.Button bAdd;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn categoryDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn statsDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn imagePathDataGridViewTextBoxColumn;
+        private System.Windows.Forms.BindingSource itemBindingSource;
     }
 }
 
