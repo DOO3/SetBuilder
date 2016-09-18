@@ -1,6 +1,8 @@
 ﻿using SetBuilder.Library;
+using SetBuilder.Library.Enums;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
@@ -9,18 +11,27 @@ namespace SetBuilder.Editor
 {
     public partial class MainForm : Form
     {
-        private List<Item> Items { get; set; }
+        private ObservableCollection<Item> Items { get; set; }
 
         public MainForm()
         {
             InitializeComponent();
             DoubleBuffered = true;
             SetStyle(ControlStyles.ResizeRedraw, true);
+
+            Items = new ObservableCollection<Item>();
+          
+        }
+
+        private void Update()
+        {
+            dgvItems.DataSource = null;
+            dgvItems.DataSource = Items;
         }
 
         #region sizing
 
-        protected override void OnPaint(PaintEventArgs e) 
+        protected override void OnPaint(PaintEventArgs e)
         {
             e.Graphics.FillRectangle(new SolidBrush(SystemColors.ControlDarkDark), Top);
             e.Graphics.FillRectangle(new SolidBrush(SystemColors.ControlDarkDark), Left);
@@ -68,7 +79,7 @@ namespace SetBuilder.Editor
                 else if (Right.Contains(cursor)) message.Result = (IntPtr)HTRIGHT;
                 else if (Bottom.Contains(cursor)) message.Result = (IntPtr)HTBOTTOM;
             }
-        }       
+        }
 
         #endregion
 
@@ -95,8 +106,13 @@ namespace SetBuilder.Editor
 
         private void bAdd_Click(object sender, EventArgs e)
         {
-            var form = new AddEditForm();
-            form.ShowDialog();
+            var item = new Item();
+            var form = new AddEditForm(item);
+            if(form.ShowDialog() == DialogResult.OK)
+            {
+                Items.Add(item);
+                Update();
+            }
         }
 
         private void bClosePanel_Click(object sender, EventArgs e)

@@ -38,12 +38,12 @@ namespace SetBuilder.Editor
             this.bClose = new System.Windows.Forms.ToolStripMenuItem();
             this.bClosePanel = new System.Windows.Forms.Button();
             this.dgvItems = new System.Windows.Forms.DataGridView();
-            this.bAdd = new System.Windows.Forms.Button();
-            this.itemBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.categoryDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.imagePathDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.itemBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.bAdd = new System.Windows.Forms.Button();
             this.msMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvItems)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).BeginInit();
@@ -122,23 +122,6 @@ namespace SetBuilder.Editor
             this.dgvItems.Size = new System.Drawing.Size(749, 257);
             this.dgvItems.TabIndex = 2;
             // 
-            // bAdd
-            // 
-            this.bAdd.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.bAdd.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.bAdd.ForeColor = System.Drawing.SystemColors.Control;
-            this.bAdd.Location = new System.Drawing.Point(338, 326);
-            this.bAdd.Name = "bAdd";
-            this.bAdd.Size = new System.Drawing.Size(127, 38);
-            this.bAdd.TabIndex = 3;
-            this.bAdd.Text = "Add";
-            this.bAdd.UseVisualStyleBackColor = false;
-            this.bAdd.Click += new System.EventHandler(this.bAdd_Click);
-            // 
-            // itemBindingSource
-            // 
-            this.itemBindingSource.DataSource = typeof(SetBuilder.Library.Item);
-            // 
             // nameDataGridViewTextBoxColumn
             // 
             this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
@@ -162,6 +145,23 @@ namespace SetBuilder.Editor
             this.imagePathDataGridViewTextBoxColumn.DataPropertyName = "ImagePath";
             this.imagePathDataGridViewTextBoxColumn.HeaderText = "ImagePath";
             this.imagePathDataGridViewTextBoxColumn.Name = "imagePathDataGridViewTextBoxColumn";
+            // 
+            // itemBindingSource
+            // 
+            this.itemBindingSource.DataSource = typeof(SetBuilder.Library.Item);
+            // 
+            // bAdd
+            // 
+            this.bAdd.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.bAdd.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.bAdd.ForeColor = System.Drawing.SystemColors.Control;
+            this.bAdd.Location = new System.Drawing.Point(338, 326);
+            this.bAdd.Name = "bAdd";
+            this.bAdd.Size = new System.Drawing.Size(127, 38);
+            this.bAdd.TabIndex = 3;
+            this.bAdd.Text = "Add";
+            this.bAdd.UseVisualStyleBackColor = false;
+            this.bAdd.Click += new System.EventHandler(this.bAdd_Click);
             // 
             // MainForm
             // 

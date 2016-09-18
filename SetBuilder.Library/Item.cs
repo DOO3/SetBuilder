@@ -9,6 +9,7 @@ namespace SetBuilder.Library
         public Category Category { get; set; }
         public List<Class> Classes { get; set; }
         public Dictionary<Stat, int> Stats { get; set; }
+        public int Level { get; set; }
         public string ImagePath { get; set; }
     }
 }

@@ -28,83 +28,65 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.msMain = new System.Windows.Forms.MenuStrip();
-            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.bOpen = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.bClose = new System.Windows.Forms.ToolStripMenuItem();
-            this.bAdd = new System.Windows.Forms.Button();
+            this.bSave = new System.Windows.Forms.Button();
             this.dgvItems = new System.Windows.Forms.DataGridView();
             this.bClosePanel = new System.Windows.Forms.Button();
+            this.bClose = new System.Windows.Forms.Button();
+            this.bCancel = new System.Windows.Forms.Button();
+            this.gbInformation = new System.Windows.Forms.GroupBox();
+            this.tbName = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.tbLevel = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.dgvClass = new System.Windows.Forms.DataGridView();
+            this.cbCategory = new System.Windows.Forms.ComboBox();
+            this.lInformationSpecialization = new System.Windows.Forms.Label();
+            this.pbPicture = new System.Windows.Forms.PictureBox();
+            this.bPictureBrowse = new System.Windows.Forms.Button();
             this.cbStat = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.cbStatValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.msMain.SuspendLayout();
+            this.tbStatValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cbClass = new System.Windows.Forms.DataGridViewComboBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvItems)).BeginInit();
+            this.gbInformation.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvClass)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbPicture)).BeginInit();
             this.SuspendLayout();
             // 
             // msMain
             // 
             this.msMain.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.msMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem});
             this.msMain.Location = new System.Drawing.Point(0, 0);
             this.msMain.Name = "msMain";
-            this.msMain.Size = new System.Drawing.Size(854, 24);
+            this.msMain.Size = new System.Drawing.Size(502, 24);
             this.msMain.TabIndex = 4;
             this.msMain.Text = "menuStrip1";
+            this.msMain.MouseDown += new System.Windows.Forms.MouseEventHandler(this.msMain_MouseDown);
             // 
-            // fileToolStripMenuItem
+            // bSave
             // 
-            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.bOpen,
-            this.toolStripSeparator1,
-            this.bClose});
-            this.fileToolStripMenuItem.ForeColor = System.Drawing.SystemColors.Control;
-            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
-            this.fileToolStripMenuItem.Text = "File";
-            // 
-            // bOpen
-            // 
-            this.bOpen.Name = "bOpen";
-            this.bOpen.Size = new System.Drawing.Size(145, 22);
-            this.bOpen.Text = "Open";
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(142, 6);
-            // 
-            // bClose
-            // 
-            this.bClose.Name = "bClose";
-            this.bClose.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.bClose.Size = new System.Drawing.Size(145, 22);
-            this.bClose.Text = "Close";
-            // 
-            // bAdd
-            // 
-            this.bAdd.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.bAdd.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.bAdd.ForeColor = System.Drawing.SystemColors.Control;
-            this.bAdd.Location = new System.Drawing.Point(248, 444);
-            this.bAdd.Name = "bAdd";
-            this.bAdd.Size = new System.Drawing.Size(127, 38);
-            this.bAdd.TabIndex = 7;
-            this.bAdd.Text = "Add";
-            this.bAdd.UseVisualStyleBackColor = false;
+            this.bSave.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.bSave.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.bSave.ForeColor = System.Drawing.SystemColors.Control;
+            this.bSave.Location = new System.Drawing.Point(99, 381);
+            this.bSave.Name = "bSave";
+            this.bSave.Size = new System.Drawing.Size(127, 38);
+            this.bSave.TabIndex = 7;
+            this.bSave.Text = "Save";
+            this.bSave.UseVisualStyleBackColor = false;
+            this.bSave.Click += new System.EventHandler(this.bSave_Click);
             // 
             // dgvItems
             // 
             this.dgvItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvItems.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.cbStat,
-            this.cbStatValue});
-            this.dgvItems.Location = new System.Drawing.Point(406, 38);
+            this.tbStatValue});
+            this.dgvItems.Location = new System.Drawing.Point(255, 48);
             this.dgvItems.Name = "dgvItems";
-            this.dgvItems.RowHeadersVisible = false;
-            this.dgvItems.RowHeadersWidth = 40;
-            this.dgvItems.Size = new System.Drawing.Size(203, 257);
+            this.dgvItems.RowHeadersWidth = 25;
+            this.dgvItems.Size = new System.Drawing.Size(228, 315);
             this.dgvItems.TabIndex = 6;
             // 
             // bClosePanel
@@ -115,40 +97,182 @@
             this.bClosePanel.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.bClosePanel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bClosePanel.ForeColor = System.Drawing.Color.White;
-            this.bClosePanel.Location = new System.Drawing.Point(1075, -52);
+            this.bClosePanel.Location = new System.Drawing.Point(723, -52);
             this.bClosePanel.Name = "bClosePanel";
             this.bClosePanel.Size = new System.Drawing.Size(24, 24);
             this.bClosePanel.TabIndex = 5;
             this.bClosePanel.Text = "X";
             this.bClosePanel.UseVisualStyleBackColor = false;
             // 
+            // bClose
+            // 
+            this.bClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.bClose.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.bClose.FlatAppearance.BorderSize = 0;
+            this.bClose.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.bClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bClose.ForeColor = System.Drawing.Color.White;
+            this.bClose.Location = new System.Drawing.Point(478, 0);
+            this.bClose.Name = "bClose";
+            this.bClose.Size = new System.Drawing.Size(24, 24);
+            this.bClose.TabIndex = 8;
+            this.bClose.Text = "X";
+            this.bClose.UseVisualStyleBackColor = false;
+            this.bClose.Click += new System.EventHandler(this.bClose_Click);
+            // 
+            // bCancel
+            // 
+            this.bCancel.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.bCancel.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.bCancel.ForeColor = System.Drawing.SystemColors.Control;
+            this.bCancel.Location = new System.Drawing.Point(255, 381);
+            this.bCancel.Name = "bCancel";
+            this.bCancel.Size = new System.Drawing.Size(127, 38);
+            this.bCancel.TabIndex = 9;
+            this.bCancel.Text = "Cancel";
+            this.bCancel.UseVisualStyleBackColor = false;
+            this.bCancel.Click += new System.EventHandler(this.bCancel_Click);
+            // 
+            // gbInformation
+            // 
+            this.gbInformation.Controls.Add(this.tbName);
+            this.gbInformation.Controls.Add(this.label2);
+            this.gbInformation.Controls.Add(this.tbLevel);
+            this.gbInformation.Controls.Add(this.label1);
+            this.gbInformation.Controls.Add(this.dgvClass);
+            this.gbInformation.Controls.Add(this.cbCategory);
+            this.gbInformation.Controls.Add(this.lInformationSpecialization);
+            this.gbInformation.Controls.Add(this.pbPicture);
+            this.gbInformation.Controls.Add(this.bPictureBrowse);
+            this.gbInformation.Location = new System.Drawing.Point(12, 39);
+            this.gbInformation.Name = "gbInformation";
+            this.gbInformation.Size = new System.Drawing.Size(222, 324);
+            this.gbInformation.TabIndex = 10;
+            this.gbInformation.TabStop = false;
+            this.gbInformation.Text = "Information:";
+            // 
+            // tbName
+            // 
+            this.tbName.Location = new System.Drawing.Point(9, 143);
+            this.tbName.Multiline = true;
+            this.tbName.Name = "tbName";
+            this.tbName.Size = new System.Drawing.Size(207, 69);
+            this.tbName.TabIndex = 20;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(6, 127);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(38, 13);
+            this.label2.TabIndex = 19;
+            this.label2.Text = "Name:";
+            // 
+            // tbLevel
+            // 
+            this.tbLevel.Location = new System.Drawing.Point(9, 94);
+            this.tbLevel.Name = "tbLevel";
+            this.tbLevel.Size = new System.Drawing.Size(122, 20);
+            this.tbLevel.TabIndex = 18;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 78);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(36, 13);
+            this.label1.TabIndex = 17;
+            this.label1.Text = "Level:";
+            // 
+            // dgvClass
+            // 
+            this.dgvClass.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvClass.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.cbClass});
+            this.dgvClass.Location = new System.Drawing.Point(9, 229);
+            this.dgvClass.Name = "dgvClass";
+            this.dgvClass.RowHeadersWidth = 25;
+            this.dgvClass.Size = new System.Drawing.Size(207, 86);
+            this.dgvClass.TabIndex = 16;
+            // 
+            // cbCategory
+            // 
+            this.cbCategory.FormattingEnabled = true;
+            this.cbCategory.Location = new System.Drawing.Point(9, 35);
+            this.cbCategory.Name = "cbCategory";
+            this.cbCategory.Size = new System.Drawing.Size(122, 21);
+            this.cbCategory.TabIndex = 13;
+            // 
+            // lInformationSpecialization
+            // 
+            this.lInformationSpecialization.AutoSize = true;
+            this.lInformationSpecialization.Location = new System.Drawing.Point(6, 19);
+            this.lInformationSpecialization.Name = "lInformationSpecialization";
+            this.lInformationSpecialization.Size = new System.Drawing.Size(52, 13);
+            this.lInformationSpecialization.TabIndex = 12;
+            this.lInformationSpecialization.Text = "Category:";
+            // 
+            // pbPicture
+            // 
+            this.pbPicture.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.pbPicture.Location = new System.Drawing.Point(150, 19);
+            this.pbPicture.Name = "pbPicture";
+            this.pbPicture.Size = new System.Drawing.Size(66, 66);
+            this.pbPicture.TabIndex = 0;
+            this.pbPicture.TabStop = false;
+            // 
+            // bPictureBrowse
+            // 
+            this.bPictureBrowse.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.bPictureBrowse.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.bPictureBrowse.ForeColor = System.Drawing.SystemColors.Control;
+            this.bPictureBrowse.Location = new System.Drawing.Point(150, 91);
+            this.bPictureBrowse.Name = "bPictureBrowse";
+            this.bPictureBrowse.Size = new System.Drawing.Size(66, 24);
+            this.bPictureBrowse.TabIndex = 11;
+            this.bPictureBrowse.Text = "Browse";
+            this.bPictureBrowse.UseVisualStyleBackColor = false;
+            this.bPictureBrowse.Click += new System.EventHandler(this.bPictureBrowse_Click);
+            // 
             // cbStat
             // 
             this.cbStat.HeaderText = "Stat";
-            this.cbStat.Items.AddRange(new object[] {
-            "HP",
-            "MP"});
             this.cbStat.Name = "cbStat";
             // 
-            // cbStatValue
+            // tbStatValue
             // 
-            this.cbStatValue.HeaderText = "Value";
-            this.cbStatValue.Name = "cbStatValue";
+            this.tbStatValue.HeaderText = "Value";
+            this.tbStatValue.Name = "tbStatValue";
+            // 
+            // cbClass
+            // 
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
+            this.cbClass.DefaultCellStyle = dataGridViewCellStyle3;
+            this.cbClass.HeaderText = "Class";
+            this.cbClass.Name = "cbClass";
+            this.cbClass.Width = 160;
             // 
             // AddEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(854, 592);
+            this.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.ClientSize = new System.Drawing.Size(502, 443);
+            this.Controls.Add(this.gbInformation);
+            this.Controls.Add(this.bCancel);
+            this.Controls.Add(this.bClose);
             this.Controls.Add(this.msMain);
-            this.Controls.Add(this.bAdd);
+            this.Controls.Add(this.bSave);
             this.Controls.Add(this.dgvItems);
             this.Controls.Add(this.bClosePanel);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "AddEditForm";
             this.Text = "AddEditForm";
-            this.msMain.ResumeLayout(false);
-            this.msMain.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvItems)).EndInit();
+            this.gbInformation.ResumeLayout(false);
+            this.gbInformation.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvClass)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbPicture)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -157,14 +281,23 @@
         #endregion
 
         private System.Windows.Forms.MenuStrip msMain;
-        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem bOpen;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripMenuItem bClose;
-        private System.Windows.Forms.Button bAdd;
+        private System.Windows.Forms.Button bSave;
         private System.Windows.Forms.DataGridView dgvItems;
         private System.Windows.Forms.Button bClosePanel;
+        private System.Windows.Forms.Button bClose;
+        private System.Windows.Forms.Button bCancel;
+        private System.Windows.Forms.GroupBox gbInformation;
+        private System.Windows.Forms.ComboBox cbCategory;
+        private System.Windows.Forms.Label lInformationSpecialization;
+        private System.Windows.Forms.PictureBox pbPicture;
+        private System.Windows.Forms.Button bPictureBrowse;
+        private System.Windows.Forms.DataGridView dgvClass;
+        private System.Windows.Forms.TextBox tbName;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox tbLevel;
+        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridViewComboBoxColumn cbStat;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cbStatValue;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tbStatValue;
+        private System.Windows.Forms.DataGridViewComboBoxColumn cbClass;
     }
 }
