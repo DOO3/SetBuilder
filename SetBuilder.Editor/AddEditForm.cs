@@ -17,12 +17,14 @@ namespace SetBuilder.Editor
     public partial class AddEditForm : Form
     {
         private Item _item { get; set; }
+        private string _filepath { get; set; }
 
         public AddEditForm(Item item)
         {
             InitializeComponent();
+
             cbStat.DataSource = Enum.GetNames(typeof(Stat));
-            cbCategory.DataSource = Enum.GetNames(typeof(Category));
+            //cbCategory.DataSource = Enum.GetNames(typeof(Category));
             cbClass.DataSource = Enum.GetNames(typeof(Class));
 
             _item = item; 
@@ -116,7 +118,9 @@ namespace SetBuilder.Editor
         private void bSave_Click(object sender, EventArgs e)
         {
             _item.Name = tbName.Text;
-            _item.Level = int.Parse(tbLevel.Text);
+            int lvl = 0;
+            int.TryParse(tbLevel.Text, out lvl);
+            _item.Level = lvl;
             _item.Category = (Category)cbCategory.SelectedIndex;
 
 
@@ -127,9 +131,19 @@ namespace SetBuilder.Editor
                 var row = dgvClass.Rows[i];
                 var cl = (Class)Enum.Parse(typeof(Class), row.Cells[0].Value.ToString());
                 _item.Classes.Add(cl);
-            }         
-               
+            }
 
+            _item.ImagePath = _filepath ?? Application.StartupPath + @"\Photo\Default.png";
+
+            _item.Stats = new List<KeyValuePair<Stat, int>>();
+
+            for (int i = 0; i < dgvStats.Rows.Count - 1; i++)
+            {
+                var row = dgvStats.Rows[i];
+                Stat stat = (Stat)Enum.Parse(typeof(Stat), row.Cells[0].Value.ToString());
+                int val = int.Parse(row.Cells[1].Value.ToString());
+                _item.Stats.Add(new KeyValuePair<Stat, int>(stat, val));
+            }
 
             DialogResult = DialogResult.OK;
             Close();
@@ -150,6 +164,7 @@ namespace SetBuilder.Editor
             {
                 pbPicture.BackColor = Color.Transparent;
                 pbPicture.Image = Bitmap.FromFile(ofd.FileName);
+                _filepath = ofd.FileName;
             }
 
         }      

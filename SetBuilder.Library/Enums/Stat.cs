@@ -21,6 +21,7 @@
         SopraKontrol, 
         Speed, 
         Sputnik, 
-        Gold
+        Gold,
+        HP
     }
 }

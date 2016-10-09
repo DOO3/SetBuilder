@@ -28,10 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.msMain = new System.Windows.Forms.MenuStrip();
             this.bSave = new System.Windows.Forms.Button();
-            this.dgvItems = new System.Windows.Forms.DataGridView();
+            this.dgvStats = new System.Windows.Forms.DataGridView();
+            this.cbStat = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.tbStatValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bClosePanel = new System.Windows.Forms.Button();
             this.bClose = new System.Windows.Forms.Button();
             this.bCancel = new System.Windows.Forms.Button();
@@ -41,14 +43,12 @@
             this.tbLevel = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.dgvClass = new System.Windows.Forms.DataGridView();
+            this.cbClass = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.cbCategory = new System.Windows.Forms.ComboBox();
             this.lInformationSpecialization = new System.Windows.Forms.Label();
             this.pbPicture = new System.Windows.Forms.PictureBox();
             this.bPictureBrowse = new System.Windows.Forms.Button();
-            this.cbStat = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.tbStatValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cbClass = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvItems)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvStats)).BeginInit();
             this.gbInformation.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvClass)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbPicture)).BeginInit();
@@ -77,17 +77,27 @@
             this.bSave.UseVisualStyleBackColor = false;
             this.bSave.Click += new System.EventHandler(this.bSave_Click);
             // 
-            // dgvItems
+            // dgvStats
             // 
-            this.dgvItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvItems.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvStats.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvStats.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.cbStat,
             this.tbStatValue});
-            this.dgvItems.Location = new System.Drawing.Point(255, 48);
-            this.dgvItems.Name = "dgvItems";
-            this.dgvItems.RowHeadersWidth = 25;
-            this.dgvItems.Size = new System.Drawing.Size(228, 315);
-            this.dgvItems.TabIndex = 6;
+            this.dgvStats.Location = new System.Drawing.Point(255, 48);
+            this.dgvStats.Name = "dgvStats";
+            this.dgvStats.RowHeadersWidth = 25;
+            this.dgvStats.Size = new System.Drawing.Size(228, 315);
+            this.dgvStats.TabIndex = 6;
+            // 
+            // cbStat
+            // 
+            this.cbStat.HeaderText = "Stat";
+            this.cbStat.Name = "cbStat";
+            // 
+            // tbStatValue
+            // 
+            this.tbStatValue.HeaderText = "Value";
+            this.tbStatValue.Name = "tbStatValue";
             // 
             // bClosePanel
             // 
@@ -195,6 +205,14 @@
             this.dgvClass.Size = new System.Drawing.Size(207, 86);
             this.dgvClass.TabIndex = 16;
             // 
+            // cbClass
+            // 
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            this.cbClass.DefaultCellStyle = dataGridViewCellStyle1;
+            this.cbClass.HeaderText = "Class";
+            this.cbClass.Name = "cbClass";
+            this.cbClass.Width = 160;
+            // 
             // cbCategory
             // 
             this.cbCategory.FormattingEnabled = true;
@@ -234,24 +252,6 @@
             this.bPictureBrowse.UseVisualStyleBackColor = false;
             this.bPictureBrowse.Click += new System.EventHandler(this.bPictureBrowse_Click);
             // 
-            // cbStat
-            // 
-            this.cbStat.HeaderText = "Stat";
-            this.cbStat.Name = "cbStat";
-            // 
-            // tbStatValue
-            // 
-            this.tbStatValue.HeaderText = "Value";
-            this.tbStatValue.Name = "tbStatValue";
-            // 
-            // cbClass
-            // 
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            this.cbClass.DefaultCellStyle = dataGridViewCellStyle3;
-            this.cbClass.HeaderText = "Class";
-            this.cbClass.Name = "cbClass";
-            this.cbClass.Width = 160;
-            // 
             // AddEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -263,12 +263,12 @@
             this.Controls.Add(this.bClose);
             this.Controls.Add(this.msMain);
             this.Controls.Add(this.bSave);
-            this.Controls.Add(this.dgvItems);
+            this.Controls.Add(this.dgvStats);
             this.Controls.Add(this.bClosePanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "AddEditForm";
             this.Text = "AddEditForm";
-            ((System.ComponentModel.ISupportInitialize)(this.dgvItems)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvStats)).EndInit();
             this.gbInformation.ResumeLayout(false);
             this.gbInformation.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvClass)).EndInit();
@@ -282,7 +282,7 @@
 
         private System.Windows.Forms.MenuStrip msMain;
         private System.Windows.Forms.Button bSave;
-        private System.Windows.Forms.DataGridView dgvItems;
+        private System.Windows.Forms.DataGridView dgvStats;
         private System.Windows.Forms.Button bClosePanel;
         private System.Windows.Forms.Button bClose;
         private System.Windows.Forms.Button bCancel;

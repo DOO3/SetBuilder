@@ -4,29 +4,29 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Drawing;
+using System.IO;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using System.Xml.Serialization;
 
 namespace SetBuilder.Editor
 {
     public partial class MainForm : Form
     {
-        private ObservableCollection<Item> Items { get; set; }
+        private ItemsSrorage _itemsSrorage { get; set; }
 
         public MainForm()
         {
             InitializeComponent();
             DoubleBuffered = true;
             SetStyle(ControlStyles.ResizeRedraw, true);
-
-            Items = new ObservableCollection<Item>();
-          
+            _itemsSrorage = new ItemsSrorage();
         }
 
         private void Update()
         {
             dgvItems.DataSource = null;
-            dgvItems.DataSource = Items;
+            dgvItems.DataSource = _itemsSrorage.Items;
         }
 
         #region sizing
@@ -110,9 +110,20 @@ namespace SetBuilder.Editor
             var form = new AddEditForm(item);
             if(form.ShowDialog() == DialogResult.OK)
             {
-                Items.Add(item);
+                _itemsSrorage.Items.Add(item);
                 Update();
             }
+        }
+
+        private void sSave_Click(object sender, EventArgs e)
+        {
+            Save();
+        }
+
+        private void bOpen_Click(object sender, EventArgs e)
+        {
+            Load();
+            Update();
         }
 
         private void bClosePanel_Click(object sender, EventArgs e)
@@ -129,6 +140,47 @@ namespace SetBuilder.Editor
         {
             //TODO: Close message box
             Close();
+        }
+
+        private void bEdit_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void bDelete_Click(object sender, EventArgs e)
+        {
+            _itemsSrorage.Items.Remove()
+        }
+
+        private void Save() //save
+        {
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.FileName = "Items";
+            sfd.Filter = "XML files(*.xml) | *.xml";
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                XmlSerializer serializer = new XmlSerializer(typeof(ItemsSrorage));
+
+                using (FileStream fs = new FileStream(sfd.FileName, FileMode.OpenOrCreate))
+                {
+                    serializer.Serialize(fs, _itemsSrorage);
+                }
+            }
+        }
+
+        private void Load () //load
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "XML files (*.xml)|*.xml";
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                XmlSerializer serializer = new XmlSerializer(typeof(ItemsSrorage));
+
+                using (FileStream fs = new FileStream(ofd.FileName, FileMode.Open))
+                {
+                    _itemsSrorage = (ItemsSrorage)serializer.Deserialize(fs);
+                }
+            }
         }
     }
 }

@@ -38,15 +38,20 @@ namespace SetBuilder.Editor
             this.bClose = new System.Windows.Forms.ToolStripMenuItem();
             this.bClosePanel = new System.Windows.Forms.Button();
             this.dgvItems = new System.Windows.Forms.DataGridView();
+            this.imagePathDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewImageColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.categoryDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.statsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.imagePathDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.levelDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.itemBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bAdd = new System.Windows.Forms.Button();
+            this.classesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.bEdit = new System.Windows.Forms.Button();
+            this.bDelete = new System.Windows.Forms.Button();
+            this.sSave = new System.Windows.Forms.ToolStripMenuItem();
             this.msMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvItems)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.classesBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // msMain
@@ -56,7 +61,7 @@ namespace SetBuilder.Editor
             this.fileToolStripMenuItem});
             this.msMain.Location = new System.Drawing.Point(0, 0);
             this.msMain.Name = "msMain";
-            this.msMain.Size = new System.Drawing.Size(773, 24);
+            this.msMain.Size = new System.Drawing.Size(530, 24);
             this.msMain.TabIndex = 0;
             this.msMain.Text = "menuStrip1";
             this.msMain.MouseDown += new System.Windows.Forms.MouseEventHandler(this.msMain_MouseDown);
@@ -64,6 +69,7 @@ namespace SetBuilder.Editor
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.sSave,
             this.bOpen,
             this.toolStripSeparator1,
             this.bClose});
@@ -75,19 +81,20 @@ namespace SetBuilder.Editor
             // bOpen
             // 
             this.bOpen.Name = "bOpen";
-            this.bOpen.Size = new System.Drawing.Size(145, 22);
+            this.bOpen.Size = new System.Drawing.Size(152, 22);
             this.bOpen.Text = "Open";
+            this.bOpen.Click += new System.EventHandler(this.bOpen_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(142, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
             // 
             // bClose
             // 
             this.bClose.Name = "bClose";
             this.bClose.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.bClose.Size = new System.Drawing.Size(145, 22);
+            this.bClose.Size = new System.Drawing.Size(152, 22);
             this.bClose.Text = "Close";
             this.bClose.Click += new System.EventHandler(this.bClose_Click);
             // 
@@ -99,7 +106,7 @@ namespace SetBuilder.Editor
             this.bClosePanel.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.bClosePanel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bClosePanel.ForeColor = System.Drawing.Color.White;
-            this.bClosePanel.Location = new System.Drawing.Point(749, 0);
+            this.bClosePanel.Location = new System.Drawing.Point(506, 0);
             this.bClosePanel.Name = "bClosePanel";
             this.bClosePanel.Size = new System.Drawing.Size(24, 24);
             this.bClosePanel.TabIndex = 1;
@@ -109,42 +116,56 @@ namespace SetBuilder.Editor
             // 
             // dgvItems
             // 
+            this.dgvItems.AllowUserToAddRows = false;
+            this.dgvItems.AllowUserToDeleteRows = false;
             this.dgvItems.AutoGenerateColumns = false;
             this.dgvItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvItems.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.imagePathDataGridViewTextBoxColumn,
             this.nameDataGridViewTextBoxColumn,
             this.categoryDataGridViewTextBoxColumn,
-            this.statsDataGridViewTextBoxColumn,
-            this.imagePathDataGridViewTextBoxColumn});
+            this.levelDataGridViewTextBoxColumn});
             this.dgvItems.DataSource = this.itemBindingSource;
-            this.dgvItems.Location = new System.Drawing.Point(12, 63);
+            this.dgvItems.Location = new System.Drawing.Point(12, 37);
             this.dgvItems.Name = "dgvItems";
-            this.dgvItems.Size = new System.Drawing.Size(749, 257);
+            this.dgvItems.ReadOnly = true;
+            this.dgvItems.RowTemplate.Height = 64;
+            this.dgvItems.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvItems.Size = new System.Drawing.Size(500, 257);
             this.dgvItems.TabIndex = 2;
+            // 
+            // imagePathDataGridViewTextBoxColumn
+            // 
+            this.imagePathDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.imagePathDataGridViewTextBoxColumn.DataPropertyName = "Image";
+            this.imagePathDataGridViewTextBoxColumn.HeaderText = "Image";
+            this.imagePathDataGridViewTextBoxColumn.Name = "imagePathDataGridViewTextBoxColumn";
+            this.imagePathDataGridViewTextBoxColumn.ReadOnly = true;
+            this.imagePathDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.imagePathDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.imagePathDataGridViewTextBoxColumn.Width = 64;
             // 
             // nameDataGridViewTextBoxColumn
             // 
+            this.nameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
             this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
             this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // categoryDataGridViewTextBoxColumn
             // 
             this.categoryDataGridViewTextBoxColumn.DataPropertyName = "Category";
             this.categoryDataGridViewTextBoxColumn.HeaderText = "Category";
             this.categoryDataGridViewTextBoxColumn.Name = "categoryDataGridViewTextBoxColumn";
+            this.categoryDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // statsDataGridViewTextBoxColumn
+            // levelDataGridViewTextBoxColumn
             // 
-            this.statsDataGridViewTextBoxColumn.DataPropertyName = "Stats";
-            this.statsDataGridViewTextBoxColumn.HeaderText = "Stats";
-            this.statsDataGridViewTextBoxColumn.Name = "statsDataGridViewTextBoxColumn";
-            // 
-            // imagePathDataGridViewTextBoxColumn
-            // 
-            this.imagePathDataGridViewTextBoxColumn.DataPropertyName = "ImagePath";
-            this.imagePathDataGridViewTextBoxColumn.HeaderText = "ImagePath";
-            this.imagePathDataGridViewTextBoxColumn.Name = "imagePathDataGridViewTextBoxColumn";
+            this.levelDataGridViewTextBoxColumn.DataPropertyName = "Level";
+            this.levelDataGridViewTextBoxColumn.HeaderText = "Level";
+            this.levelDataGridViewTextBoxColumn.Name = "levelDataGridViewTextBoxColumn";
+            this.levelDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // itemBindingSource
             // 
@@ -155,7 +176,7 @@ namespace SetBuilder.Editor
             this.bAdd.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.bAdd.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.bAdd.ForeColor = System.Drawing.SystemColors.Control;
-            this.bAdd.Location = new System.Drawing.Point(338, 326);
+            this.bAdd.Location = new System.Drawing.Point(70, 300);
             this.bAdd.Name = "bAdd";
             this.bAdd.Size = new System.Drawing.Size(127, 38);
             this.bAdd.TabIndex = 3;
@@ -163,12 +184,53 @@ namespace SetBuilder.Editor
             this.bAdd.UseVisualStyleBackColor = false;
             this.bAdd.Click += new System.EventHandler(this.bAdd_Click);
             // 
+            // classesBindingSource
+            // 
+            this.classesBindingSource.DataMember = "Classes";
+            this.classesBindingSource.DataSource = this.itemBindingSource;
+            // 
+            // bEdit
+            // 
+            this.bEdit.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.bEdit.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.bEdit.ForeColor = System.Drawing.SystemColors.Control;
+            this.bEdit.Location = new System.Drawing.Point(203, 300);
+            this.bEdit.Name = "bEdit";
+            this.bEdit.Size = new System.Drawing.Size(127, 38);
+            this.bEdit.TabIndex = 4;
+            this.bEdit.Text = "Edit";
+            this.bEdit.UseVisualStyleBackColor = false;
+            this.bEdit.Click += new System.EventHandler(this.bEdit_Click);
+            // 
+            // bDelete
+            // 
+            this.bDelete.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.bDelete.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.bDelete.ForeColor = System.Drawing.SystemColors.Control;
+            this.bDelete.Location = new System.Drawing.Point(336, 300);
+            this.bDelete.Name = "bDelete";
+            this.bDelete.Size = new System.Drawing.Size(127, 38);
+            this.bDelete.TabIndex = 5;
+            this.bDelete.Text = "Delete";
+            this.bDelete.UseVisualStyleBackColor = false;
+            this.bDelete.Click += new System.EventHandler(this.bDelete_Click);
+            // 
+            // sSave
+            // 
+            this.sSave.Name = "sSave";
+            this.sSave.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
+            this.sSave.Size = new System.Drawing.Size(152, 22);
+            this.sSave.Text = "Save";
+            this.sSave.Click += new System.EventHandler(this.sSave_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.ClientSize = new System.Drawing.Size(773, 491);
+            this.ClientSize = new System.Drawing.Size(530, 345);
+            this.Controls.Add(this.bDelete);
+            this.Controls.Add(this.bEdit);
             this.Controls.Add(this.bAdd);
             this.Controls.Add(this.dgvItems);
             this.Controls.Add(this.bClosePanel);
@@ -182,6 +244,7 @@ namespace SetBuilder.Editor
             this.msMain.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvItems)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.classesBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -197,11 +260,15 @@ namespace SetBuilder.Editor
         private System.Windows.Forms.ToolStripMenuItem bOpen;
         private System.Windows.Forms.DataGridView dgvItems;
         private System.Windows.Forms.Button bAdd;
+        private System.Windows.Forms.BindingSource itemBindingSource;
+        private System.Windows.Forms.BindingSource classesBindingSource;
+        private System.Windows.Forms.DataGridViewImageColumn imagePathDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn categoryDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn statsDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn imagePathDataGridViewTextBoxColumn;
-        private System.Windows.Forms.BindingSource itemBindingSource;
+        private System.Windows.Forms.DataGridViewTextBoxColumn levelDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Button bEdit;
+        private System.Windows.Forms.Button bDelete;
+        private System.Windows.Forms.ToolStripMenuItem sSave;
     }
 }
 
