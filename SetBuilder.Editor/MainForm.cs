@@ -27,6 +27,97 @@ namespace SetBuilder.Editor
         {
             dgvItems.DataSource = null;
             dgvItems.DataSource = _itemsSrorage.Items;
+        }           
+
+        private void sSave_Click(object sender, EventArgs e)
+        {
+            Save();
+        }
+
+        private void bOpen_Click(object sender, EventArgs e)
+        {
+            Load();
+            Update();
+        }
+
+        private void bClosePanel_Click(object sender, EventArgs e)
+        {
+            FormClose();
+        }      
+
+        private void bClose_Click(object sender, EventArgs e)
+        {
+            FormClose();
+        }
+
+        private void FormClose()
+        {
+            //TODO: Close message box
+            Close();
+        }
+
+        private void bAdd_Click(object sender, EventArgs e)
+        {
+            var item = new Item();
+            var form = new AddEditForm(item);
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                _itemsSrorage.Items.Add(item);
+                Update();
+            }
+        }
+
+        private void bEdit_Click(object sender, EventArgs e)
+        {
+            if (dgvItems.SelectedRows.Count == 0)
+                return;
+
+            var item = (Item)dgvItems.SelectedRows[0].DataBoundItem;
+            var form = new AddEditForm(item);
+            if (form.ShowDialog() == DialogResult.OK)
+            {              
+                Update();
+            }
+        }
+        
+        private void bDelete_Click(object sender, EventArgs e)
+        {
+            if (dgvItems.SelectedRows.Count == 0)
+                return;
+
+            _itemsSrorage.Items.Remove((Item)dgvItems.SelectedRows[0].DataBoundItem);
+            Update();
+        }
+
+        private void Save() //save
+        {
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.FileName = "Items";
+            sfd.Filter = "XML files(*.xml) | *.xml";
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                XmlSerializer serializer = new XmlSerializer(typeof(ItemsSrorage));
+
+                using (FileStream fs = new FileStream(sfd.FileName, FileMode.OpenOrCreate))
+                {
+                    serializer.Serialize(fs, _itemsSrorage);
+                }
+            }
+        }
+
+        private void Load () //load
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "XML files (*.xml)|*.xml";
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                XmlSerializer serializer = new XmlSerializer(typeof(ItemsSrorage));
+
+                using (FileStream fs = new FileStream(ofd.FileName, FileMode.Open))
+                {
+                    _itemsSrorage = (ItemsSrorage)serializer.Deserialize(fs);
+                }
+            }
         }
 
         #region sizing
@@ -104,83 +195,5 @@ namespace SetBuilder.Editor
 
         #endregion
 
-        private void bAdd_Click(object sender, EventArgs e)
-        {
-            var item = new Item();
-            var form = new AddEditForm(item);
-            if(form.ShowDialog() == DialogResult.OK)
-            {
-                _itemsSrorage.Items.Add(item);
-                Update();
-            }
-        }
-
-        private void sSave_Click(object sender, EventArgs e)
-        {
-            Save();
-        }
-
-        private void bOpen_Click(object sender, EventArgs e)
-        {
-            Load();
-            Update();
-        }
-
-        private void bClosePanel_Click(object sender, EventArgs e)
-        {
-            FormClose();
-        }      
-
-        private void bClose_Click(object sender, EventArgs e)
-        {
-            FormClose();
-        }
-
-        private void FormClose()
-        {
-            //TODO: Close message box
-            Close();
-        }
-
-        private void bEdit_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void bDelete_Click(object sender, EventArgs e)
-        {
-            _itemsSrorage.Items.Remove()
-        }
-
-        private void Save() //save
-        {
-            SaveFileDialog sfd = new SaveFileDialog();
-            sfd.FileName = "Items";
-            sfd.Filter = "XML files(*.xml) | *.xml";
-            if (sfd.ShowDialog() == DialogResult.OK)
-            {
-                XmlSerializer serializer = new XmlSerializer(typeof(ItemsSrorage));
-
-                using (FileStream fs = new FileStream(sfd.FileName, FileMode.OpenOrCreate))
-                {
-                    serializer.Serialize(fs, _itemsSrorage);
-                }
-            }
-        }
-
-        private void Load () //load
-        {
-            OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Filter = "XML files (*.xml)|*.xml";
-            if (ofd.ShowDialog() == DialogResult.OK)
-            {
-                XmlSerializer serializer = new XmlSerializer(typeof(ItemsSrorage));
-
-                using (FileStream fs = new FileStream(ofd.FileName, FileMode.Open))
-                {
-                    _itemsSrorage = (ItemsSrorage)serializer.Deserialize(fs);
-                }
-            }
-        }
     }
 }

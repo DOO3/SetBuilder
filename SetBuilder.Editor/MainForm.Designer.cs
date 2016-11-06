@@ -33,6 +33,7 @@ namespace SetBuilder.Editor
             this.components = new System.ComponentModel.Container();
             this.msMain = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sSave = new System.Windows.Forms.ToolStripMenuItem();
             this.bOpen = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.bClose = new System.Windows.Forms.ToolStripMenuItem();
@@ -47,7 +48,6 @@ namespace SetBuilder.Editor
             this.classesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bEdit = new System.Windows.Forms.Button();
             this.bDelete = new System.Windows.Forms.Button();
-            this.sSave = new System.Windows.Forms.ToolStripMenuItem();
             this.msMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvItems)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).BeginInit();
@@ -78,23 +78,31 @@ namespace SetBuilder.Editor
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
             // 
+            // sSave
+            // 
+            this.sSave.Name = "sSave";
+            this.sSave.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
+            this.sSave.Size = new System.Drawing.Size(145, 22);
+            this.sSave.Text = "Save";
+            this.sSave.Click += new System.EventHandler(this.sSave_Click);
+            // 
             // bOpen
             // 
             this.bOpen.Name = "bOpen";
-            this.bOpen.Size = new System.Drawing.Size(152, 22);
+            this.bOpen.Size = new System.Drawing.Size(145, 22);
             this.bOpen.Text = "Open";
             this.bOpen.Click += new System.EventHandler(this.bOpen_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(142, 6);
             // 
             // bClose
             // 
             this.bClose.Name = "bClose";
             this.bClose.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.bClose.Size = new System.Drawing.Size(152, 22);
+            this.bClose.Size = new System.Drawing.Size(145, 22);
             this.bClose.Text = "Close";
             this.bClose.Click += new System.EventHandler(this.bClose_Click);
             // 
@@ -127,6 +135,7 @@ namespace SetBuilder.Editor
             this.levelDataGridViewTextBoxColumn});
             this.dgvItems.DataSource = this.itemBindingSource;
             this.dgvItems.Location = new System.Drawing.Point(12, 37);
+            this.dgvItems.MultiSelect = false;
             this.dgvItems.Name = "dgvItems";
             this.dgvItems.ReadOnly = true;
             this.dgvItems.RowTemplate.Height = 64;
@@ -214,14 +223,6 @@ namespace SetBuilder.Editor
             this.bDelete.Text = "Delete";
             this.bDelete.UseVisualStyleBackColor = false;
             this.bDelete.Click += new System.EventHandler(this.bDelete_Click);
-            // 
-            // sSave
-            // 
-            this.sSave.Name = "sSave";
-            this.sSave.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.sSave.Size = new System.Drawing.Size(152, 22);
-            this.sSave.Text = "Save";
-            this.sSave.Click += new System.EventHandler(this.sSave_Click);
             // 
             // MainForm
             // 

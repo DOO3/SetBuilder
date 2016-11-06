@@ -10,7 +10,7 @@ namespace SetBuilder.Library
         public string Name { get; set; }
         public Category Category { get; set; }
         public List<Class> Classes { get; set; }      
-        public List<KeyValuePair<Stat, int>> Stats { get; set; }
+        public List<MyKeyValuePair<Stat, int>> Stats { get; set; }
         public int Level { get; set; }
         public string ImagePath { get; set; }
 
@@ -18,7 +18,7 @@ namespace SetBuilder.Library
         {
             get
             {
-                return Bitmap.FromFile(ImagePath);
+                return ImagePath == null ? null : Bitmap.FromFile(ImagePath);
             }
         }
     }

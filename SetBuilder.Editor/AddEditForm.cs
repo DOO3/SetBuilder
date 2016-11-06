@@ -23,14 +23,94 @@ namespace SetBuilder.Editor
         {
             InitializeComponent();
 
-            cbStat.DataSource = Enum.GetNames(typeof(Stat));
-            //cbCategory.DataSource = Enum.GetNames(typeof(Category));
-            cbClass.DataSource = Enum.GetNames(typeof(Class));
+            cbCategory.SelectedIndex = (int)item.Category;
+            tbLevel.Text = item.Level.ToString();
+            tbName.Text= item.Name;
+
+            if(item.Classes != null)
+            {
+                foreach (var cl in item.Classes)
+                {                  
+                          
+                    dgvClass.Rows.Add(cbClass.Items[(int)cl]);
+                }
+            }
+
+            if (item.Stats != null)
+            {
+                foreach (var stat in item.Stats)
+                {
+                    dgvStats.Rows.Add(cbStat.Items[(int)stat.Key], stat.Value);
+                }
+            }
+
+            _filepath = item.ImagePath;
+            pbPicture.Image = item.Image;
+            pbPicture.BackColor = Color.Transparent;
 
             _item = item; 
 
             DoubleBuffered = true;
             SetStyle(ControlStyles.ResizeRedraw, true);
+        }      
+
+        private void bCancel_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void bSave_Click(object sender, EventArgs e)
+        {
+            _item.Name = tbName.Text;
+            int lvl = 0;
+            int.TryParse(tbLevel.Text, out lvl);
+            _item.Level = lvl;
+            _item.Category = (Category)cbCategory.SelectedIndex;
+
+
+            _item.Classes = new List<Class>();
+
+            for (int i = 0; i < dgvClass.Rows.Count - 1; i++)
+            {
+                var row = dgvClass.Rows[i];
+                var cl = (Class)cbClass.Items.IndexOf(row.Cells[0].Value.ToString());
+                _item.Classes.Add(cl);
+            }
+
+            _item.ImagePath = _filepath ?? Application.StartupPath + @"\Photo\Default.png";
+
+            _item.Stats = new List<MyKeyValuePair<Stat, int>>();
+
+            for (int i = 0; i < dgvStats.Rows.Count - 1; i++)
+            {
+                var row = dgvStats.Rows[i];
+                Stat stat = (Stat)cbStat.Items.IndexOf(row.Cells[0].Value.ToString());
+                int val = int.Parse(row.Cells[1].Value.ToString());
+                _item.Stats.Add(new MyKeyValuePair<Stat, int>(stat, val));
+            }
+
+            DialogResult = DialogResult.OK;
+            Close();
+        }
+
+        private void bClose_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void bPictureBrowse_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "*.png|";
+            ofd.InitialDirectory = Application.StartupPath + @"\Photo";
+
+            if(ofd.ShowDialog() == DialogResult.OK)
+            {
+                pbPicture.BackColor = Color.Transparent;
+                pbPicture.Image = Bitmap.FromFile(ofd.FileName);
+                _filepath = ofd.FileName;
+            }
+
         }
 
         #region sizing
@@ -108,65 +188,6 @@ namespace SetBuilder.Editor
             }
         }
 
-        #endregion
-
-        private void bCancel_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
-
-        private void bSave_Click(object sender, EventArgs e)
-        {
-            _item.Name = tbName.Text;
-            int lvl = 0;
-            int.TryParse(tbLevel.Text, out lvl);
-            _item.Level = lvl;
-            _item.Category = (Category)cbCategory.SelectedIndex;
-
-
-            _item.Classes = new List<Class>();
-
-            for (int i = 0; i < dgvClass.Rows.Count - 1; i++)
-            {
-                var row = dgvClass.Rows[i];
-                var cl = (Class)Enum.Parse(typeof(Class), row.Cells[0].Value.ToString());
-                _item.Classes.Add(cl);
-            }
-
-            _item.ImagePath = _filepath ?? Application.StartupPath + @"\Photo\Default.png";
-
-            _item.Stats = new List<KeyValuePair<Stat, int>>();
-
-            for (int i = 0; i < dgvStats.Rows.Count - 1; i++)
-            {
-                var row = dgvStats.Rows[i];
-                Stat stat = (Stat)Enum.Parse(typeof(Stat), row.Cells[0].Value.ToString());
-                int val = int.Parse(row.Cells[1].Value.ToString());
-                _item.Stats.Add(new KeyValuePair<Stat, int>(stat, val));
-            }
-
-            DialogResult = DialogResult.OK;
-            Close();
-        }
-
-        private void bClose_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
-
-        private void bPictureBrowse_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Filter = "*.png|";
-            ofd.InitialDirectory = Application.StartupPath + @"\Photo";
-
-            if(ofd.ShowDialog() == DialogResult.OK)
-            {
-                pbPicture.BackColor = Color.Transparent;
-                pbPicture.Image = Bitmap.FromFile(ofd.FileName);
-                _filepath = ofd.FileName;
-            }
-
-        }      
+        #endregion 
     }
 }

@@ -32,8 +32,6 @@
             this.msMain = new System.Windows.Forms.MenuStrip();
             this.bSave = new System.Windows.Forms.Button();
             this.dgvStats = new System.Windows.Forms.DataGridView();
-            this.cbStat = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.tbStatValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bClosePanel = new System.Windows.Forms.Button();
             this.bClose = new System.Windows.Forms.Button();
             this.bCancel = new System.Windows.Forms.Button();
@@ -43,11 +41,13 @@
             this.tbLevel = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.dgvClass = new System.Windows.Forms.DataGridView();
-            this.cbClass = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.cbCategory = new System.Windows.Forms.ComboBox();
             this.lInformationSpecialization = new System.Windows.Forms.Label();
             this.pbPicture = new System.Windows.Forms.PictureBox();
             this.bPictureBrowse = new System.Windows.Forms.Button();
+            this.cbClass = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.cbStat = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.tbStatValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStats)).BeginInit();
             this.gbInformation.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvClass)).BeginInit();
@@ -88,16 +88,6 @@
             this.dgvStats.RowHeadersWidth = 25;
             this.dgvStats.Size = new System.Drawing.Size(228, 315);
             this.dgvStats.TabIndex = 6;
-            // 
-            // cbStat
-            // 
-            this.cbStat.HeaderText = "Stat";
-            this.cbStat.Name = "cbStat";
-            // 
-            // tbStatValue
-            // 
-            this.tbStatValue.HeaderText = "Value";
-            this.tbStatValue.Name = "tbStatValue";
             // 
             // bClosePanel
             // 
@@ -205,17 +195,23 @@
             this.dgvClass.Size = new System.Drawing.Size(207, 86);
             this.dgvClass.TabIndex = 16;
             // 
-            // cbClass
-            // 
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            this.cbClass.DefaultCellStyle = dataGridViewCellStyle1;
-            this.cbClass.HeaderText = "Class";
-            this.cbClass.Name = "cbClass";
-            this.cbClass.Width = 160;
-            // 
             // cbCategory
             // 
             this.cbCategory.FormattingEnabled = true;
+            this.cbCategory.Items.AddRange(new object[] {
+            "Шлем",
+            "Доспех",
+            "Руки",
+            "Правая рука",
+            "Левая рука",
+            "Ноги",
+            "Шея",
+            "Кольцо",
+            "Пояс",
+            "Рубаха",
+            "Штаны",
+            "Артефакт",
+            "Скакун"});
             this.cbCategory.Location = new System.Drawing.Point(9, 35);
             this.cbCategory.Name = "cbCategory";
             this.cbCategory.Size = new System.Drawing.Size(122, 21);
@@ -251,6 +247,56 @@
             this.bPictureBrowse.Text = "Browse";
             this.bPictureBrowse.UseVisualStyleBackColor = false;
             this.bPictureBrowse.Click += new System.EventHandler(this.bPictureBrowse_Click);
+            // 
+            // cbClass
+            // 
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            this.cbClass.DefaultCellStyle = dataGridViewCellStyle1;
+            this.cbClass.HeaderText = "Class";
+            this.cbClass.Items.AddRange(new object[] {
+            "Все",
+            "Волшебник повелитель",
+            "Истовый клирик",
+            "Бесстрашный воин",
+            "Воин страж",
+            "Праведный паладин",
+            "Охотник следопыт",
+            "Чернокнижник мучитель",
+            "Плут ловкач"});
+            this.cbClass.Name = "cbClass";
+            this.cbClass.Width = 160;
+            // 
+            // cbStat
+            // 
+            this.cbStat.HeaderText = "Stat";
+            this.cbStat.Items.AddRange(new object[] {
+            "Могущество",
+            "Вероятность критического удара",
+            "Проникающий урон",
+            "Восстановление сил",
+            "Получаемые очки действий",
+            "Боевое преимущество",
+            "Бонус контролю",
+            "Оборона",
+            "Парирование",
+            "Восстановление",
+            "Вампиризм",
+            "Эффективность вампиризма",
+            "Нейстрашимость(PvP)",
+            "Получаемая бодрость",
+            "Принимаемое лечение",
+            "Сопротивляемость урону по области",
+            "Сопротивляемость контролю",
+            "Скорость",
+            "Влияние спутника",
+            "Получаемое золото",
+            "Хиты"});
+            this.cbStat.Name = "cbStat";
+            // 
+            // tbStatValue
+            // 
+            this.tbStatValue.HeaderText = "Value";
+            this.tbStatValue.Name = "tbStatValue";
             // 
             // AddEditForm
             // 
